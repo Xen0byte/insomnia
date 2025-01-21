@@ -1,6 +1,6 @@
-import { IconName } from '@fortawesome/fontawesome-svg-core';
+import type { IconName } from '@fortawesome/fontawesome-svg-core';
 import { readFile } from 'fs/promises';
-import React, { FC } from 'react';
+import React, { type FC } from 'react';
 import { Button, Heading, Menu, MenuItem, MenuTrigger, Popover } from 'react-aria-components';
 
 import { documentationLinks } from '../../common/documentation';
@@ -73,7 +73,7 @@ export const DesignEmptyState: FC<Props> = ({ onImport }) => {
             <span className="truncate flex items-center gap-2">
               Or import an existing OpenAPI spec or
               <Button
-                className="pointer-events-auto font-bold text-[--hl-lg] hover:text-[--hl] focus:text-[--hl] transition-colors"
+                className="underline pointer-events-auto font-bold text-[--hl-lg] hover:text-[--hl] focus:text-[--hl] transition-colors"
                 onPress={async () => {
                   const spec = await import('./example-openapi-spec');
 
@@ -92,7 +92,7 @@ export const DesignEmptyState: FC<Props> = ({ onImport }) => {
               <span>Import OpenAPI</span>
               <Icon icon="caret-down" />
             </Button>
-            <Popover className="min-w-max">
+            <Popover className="min-w-max overflow-y-hidden flex flex-col">
               <Menu
                 aria-label='Import OpenAPI Dropdown'
                 selectionMode="single"
@@ -100,7 +100,7 @@ export const DesignEmptyState: FC<Props> = ({ onImport }) => {
                   importActionsList.find(({ id }) => key === id)?.action();
                 }}
                 items={importActionsList}
-                className="border select-none text-sm min-w-max border-solid border-[--hl-sm] shadow-lg bg-[--color-bg] py-2 rounded-md overflow-y-auto max-h-[85vh] focus:outline-none"
+                className="border select-none text-sm min-w-max border-solid border-[--hl-sm] shadow-lg bg-[--color-bg] py-2 rounded-md overflow-y-auto focus:outline-none"
               >
                 {item => (
                   <MenuItem
